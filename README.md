@@ -6,7 +6,10 @@
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-> **日本語**: [README.ja.md](README.ja.md)
+<p align="center">
+  <a href="README.md">English</a> |
+  <a href="README.ja.md">日本語</a>
+</p>
 
 Zero-dependency README i18n drift-detection: structural parity + stale-translation check for GitHub-native localized READMEs.
 
