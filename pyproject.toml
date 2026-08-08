@@ -34,6 +34,9 @@ Homepage = "https://github.com/tkoyama010/readme-i18n-check"
 Issues = "https://github.com/tkoyama010/readme-i18n-check/issues"
 Repository = "https://github.com/tkoyama010/readme-i18n-check"
 
+[tool.hatch.build.targets.wheel]
+packages = ["check_readme_i18n"]
+
 [tool.ruff]
 line-length = 100
 lint.select = ["ALL"]
