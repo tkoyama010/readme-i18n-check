@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """Check README i18n drift: structural parity + stale-translation detection.
 
 Python stdlib only — no third-party runtime dependencies.
@@ -17,7 +16,7 @@ Two checks are performed against every ``README.<lang>.md`` at the repo root:
 
 Usage::
 
-    python check_readme_i18n.py [--allowlist FILE] [--no-stale-check]
+    python -m check_readme_i18n [OPTIONS]
 
 Exit codes: 0 = pass, 1 = drift detected, 2 = configuration error.
 """
@@ -25,12 +24,26 @@ Exit codes: 0 = pass, 1 = drift detected, 2 = configuration error.
 from __future__ import annotations
 
 import argparse
+import logging
 import re
 import subprocess
-import sys
 from pathlib import Path
 
 HEADING_RE = re.compile(r"^(#{1,6})\s+(.+)$")
+
+logger = logging.getLogger("check_readme_i18n")
+
+__all__ = [
+    "HEADING_RE",
+    "check_stale_translation",
+    "check_structural_parity",
+    "detect_repo_root",
+    "extract_heading_levels",
+    "find_localized_readmes",
+    "get_last_commit_epoch",
+    "load_allowlist",
+    "main",
+]
 
 
 def extract_heading_levels(filepath: Path) -> list[int]:
@@ -285,17 +298,17 @@ def main(argv: list[str] | None = None) -> int:
 
     repo_root = detect_repo_root(args.repo_root)
     if repo_root is None:
-        print("Error: not a git repository and --repo-root not given.", file=sys.stderr)
+        logger.error("not a git repository and --repo-root not given.")
         return 2
 
     en_readme = repo_root / "README.md"
     if not en_readme.exists():
-        print(f"Error: {en_readme} not found.", file=sys.stderr)
+        logger.error("%s not found.", en_readme)
         return 2
 
     lang_readmes = find_localized_readmes(repo_root)
     if not lang_readmes:
-        print("No localized README.*.md files found — nothing to check.")
+        logger.info("No localized README.*.md files found — nothing to check.")
         return 0
 
     allowlist = load_allowlist(args.allowlist)
@@ -317,13 +330,12 @@ def main(argv: list[str] | None = None) -> int:
 
     if all_errors:
         for err in all_errors:
-            print(err, file=sys.stderr)
-        print(f"\n{len(all_errors)} drift issue(s) found.", file=sys.stderr)
+            logger.error(err)
+        logger.error("%d drift issue(s) found.", len(all_errors))
         return 1
 
-    print(f"All {len(lang_readmes)} localized README(s) pass structural parity and stale checks.")
+    logger.info(
+        "All %d localized README(s) pass structural parity and stale checks.",
+        len(lang_readmes),
+    )
     return 0
-
-
-if __name__ == "__main__":
-    raise SystemExit(main())

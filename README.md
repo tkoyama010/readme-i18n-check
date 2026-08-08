@@ -39,7 +39,7 @@ This tool detects both automatically, in CI and pre-commit, so drift is surfaced
 
 ## Install
 
-No installation is needed beyond Python 3.9+. The script is a single file with zero third-party dependencies.
+No installation is needed beyond Python 3.9+. The package uses zero third-party dependencies (Python stdlib only).
 
 ## Usage
 
@@ -77,7 +77,7 @@ steps:
 ### Command Line
 
 ```bash
-python check_readme_i18n.py [OPTIONS]
+python -m check_readme_i18n [OPTIONS]
 ```
 
 Options:

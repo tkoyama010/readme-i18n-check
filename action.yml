@@ -34,6 +34,7 @@ runs:
         INPUT_ALLOWLIST: ${{ inputs.allowlist }}
         INPUT_NO_STALE_CHECK: ${{ inputs.no-stale-check }}
         INPUT_REPO_ROOT: ${{ inputs.repo-root }}
+        PYTHONPATH: ${{ github.workspace }}${{ env.PYTHONPATH && format(':{0}', env.PYTHONPATH) }}
       run: |
         args=()
         if [ -n "$INPUT_ALLOWLIST" ]; then
@@ -45,4 +46,4 @@ runs:
         if [ -n "$INPUT_REPO_ROOT" ]; then
           args+=(--repo-root "$INPUT_REPO_ROOT")
         fi
-        python "$GITHUB_ACTION_PATH/check_readme_i18n.py" "${args[@]}"
+        python -m check_readme_i18n "${args[@]}"

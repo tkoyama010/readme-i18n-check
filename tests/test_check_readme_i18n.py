@@ -2,30 +2,35 @@
 
 from __future__ import annotations
 
-import importlib.util
-import sys
 from pathlib import Path
 
 import pytest
 
-SCRIPT_PATH = Path(__file__).resolve().parent.parent / "check_readme_i18n.py"
-
-
-def _load_module():
-    """Load the check_readme_i18n module."""
-    spec = importlib.util.spec_from_file_location("check_readme_i18n", SCRIPT_PATH)
-    assert spec is not None
-    assert spec.loader is not None
-    module = importlib.util.module_from_spec(spec)
-    sys.modules["check_readme_i18n"] = module
-    spec.loader.exec_module(module)
-    return module
+from check_readme_i18n import (
+    check_stale_translation,
+    check_structural_parity,
+    extract_heading_levels,
+    find_localized_readmes,
+    load_allowlist,
+    main,
+)
 
 
 @pytest.fixture(scope="module")
 def mod():
-    """Provide the check_readme_i18n module for testing."""
-    return _load_module()
+    """Provide the check_readme_i18n module API for testing."""
+    return type(
+        "M",
+        (),
+        {
+            "check_stale_translation": staticmethod(check_stale_translation),
+            "check_structural_parity": staticmethod(check_structural_parity),
+            "extract_heading_levels": staticmethod(extract_heading_levels),
+            "find_localized_readmes": staticmethod(find_localized_readmes),
+            "load_allowlist": staticmethod(load_allowlist),
+            "main": staticmethod(main),
+        },
+    )
 
 
 class TestExtractHeadingLevels:

@@ -10,7 +10,7 @@ readme = "README.md"
 license = "MIT"
 requires-python = ">=3.9"
 authors = [
-  { name = "Tetsuo Koyama", email = "contact@tetsuo-koyama.dev" },
+  { name = "Tetsuo Koyama", email = "tkoyama010@gmail.com" },
 ]
 classifiers = [
   "Development Status :: 3 - Alpha",
@@ -38,10 +38,9 @@ Repository = "https://github.com/tkoyama010/readme-i18n-check"
 line-length = 100
 lint.select = ["ALL"]
 lint.ignore = ["CPY001", "PLR0917"]
-lint.per-file-ignores."check_readme_i18n.py" = [
+lint.per-file-ignores."check_readme_i18n/__init__.py" = [
   "INP001",  # implicit namespace package - standalone script
   "S607",    # partial executable path - git expected on PATH
-  "T201",    # print - CLI tool output
 ]
 lint.per-file-ignores."tests/*" = [
   "ANN",     # missing type annotations - not critical for tests

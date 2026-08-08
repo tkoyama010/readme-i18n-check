@@ -22,7 +22,7 @@ repos:
     hooks:
       - id: check-readme-i18n
         name: Check README i18n drift
-        entry: python check_readme_i18n.py --no-stale-check
+        entry: python -m check_readme_i18n --no-stale-check
         language: system
         files: ^README\..*\.md$|^README\.md$
         pass_filenames: false

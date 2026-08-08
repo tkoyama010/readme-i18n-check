@@ -39,7 +39,7 @@ Python標準ライブラリのみ — サードパーティの実行時依存関
 
 ## Install
 
-Python 3.9以上以外のインストールは不要です。スクリプトは1つのファイルで、サードパーティの依存関係はありません。
+Python 3.9以上以外のインストールは不要です。パッケージはサードパーティの依存関係を使用しません（Python標準ライブラリのみ）。
 
 ## Usage
 
@@ -77,7 +77,7 @@ steps:
 ### Command Line
 
 ```bash
-python check_readme_i18n.py [OPTIONS]
+python -m check_readme_i18n [OPTIONS]
 ```
 
 オプション:
