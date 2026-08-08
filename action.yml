@@ -34,7 +34,7 @@ runs:
         INPUT_ALLOWLIST: ${{ inputs.allowlist }}
         INPUT_NO_STALE_CHECK: ${{ inputs.no-stale-check }}
         INPUT_REPO_ROOT: ${{ inputs.repo-root }}
-        PYTHONPATH: ${{ github.workspace }}${{ env.PYTHONPATH && format(':{0}', env.PYTHONPATH) }}
+        PYTHONPATH: ${{ github.action_path }}${{ env.PYTHONPATH && format(':{0}', env.PYTHONPATH) }}
       run: |
         args=()
         if [ -n "$INPUT_ALLOWLIST" ]; then
