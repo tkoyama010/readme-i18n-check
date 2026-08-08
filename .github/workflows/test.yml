@@ -30,6 +30,9 @@ jobs:
       - name: Install dependencies
         run: pip install ruff pytest
 
+      - name: Install package
+        run: pip install -e .
+
       - name: Lint
         run: ruff check check_readme_i18n/ tests/
 
