@@ -6,7 +6,10 @@
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-> **English**: [README.md](README.md)
+<p align="center">
+  <a href="README.md">English</a> |
+  <a href="README.ja.md">日本語</a>
+</p>
 
 ゼロ依存のREADME多言語化ドリフト検出ツール: GitHubネイティブのローカライズREADMEに対する構造パリティ + 古い翻訳の検出。
 
