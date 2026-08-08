@@ -1,0 +1,10 @@
+- id: check-readme-i18n
+  name: Check README i18n drift
+  description: >-
+    Checks structural parity (heading levels) between README.md and each
+    README.<lang>.md, and optionally flags stale translations via git
+    commit dates. Python stdlib only — no third-party dependencies.
+  entry: python check_readme_i18n.py --no-stale-check
+  language: system
+  files: ^README\..*\.md$|^README\.md$
+  pass_filenames: false
